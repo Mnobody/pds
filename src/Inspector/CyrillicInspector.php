@@ -12,6 +12,10 @@ final class CyrillicInspector
 
     private const EMPTY_HIGHLIGHTED_TEXT = '';
 
+    public function __construct(private readonly Cyrillic $cyrillic)
+    {
+    }
+
     public function check(string $string): CyrillicInspection
     {
         $count = preg_match_all($this->pattern(), $string);
@@ -43,6 +47,6 @@ final class CyrillicInspector
 
     public function pattern(): string
     {
-        return sprintf('/([%s])/u', implode(Cyrillic::LETTERS));
+        return sprintf('/([%s])/u', implode($this->cyrillic->letters()));
     }
 }

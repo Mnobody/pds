@@ -4,20 +4,31 @@ declare(strict_types=1);
 
 namespace App\Tests\Normalizer;
 
-use App\Shared\Letter\Latin;
+use App\Normalizer\CyrillicNormalizer;
+use App\Normalizer\CyrillicToLatinMapper;
+use App\Normalizer\Letter\Latin;
 use App\Shared\Letter\Cyrillic;
 use PHPUnit\Framework\TestCase;
-use App\Normalizer\CyrillicNormalizer;
 
 class CyrillicNormalizerTest extends TestCase
 {
+    private CyrillicNormalizer $normalizer;
+
+    protected function setUp(): void
+    {
+        $this->normalizer = new CyrillicNormalizer(
+            new Cyrillic,
+            new CyrillicToLatinMapper
+        );
+    }
+
     /**
      * @dataProvider letters
      * @test
      */
     public function replaces_single_cyrillic_letters($input, $expected): void
     {
-        $normalized = (new CyrillicNormalizer)->normalize($input);
+        $normalized = $this->normalizer->normalize($input);
 
         $this->assertEquals($expected, $normalized);
     }
@@ -58,7 +69,7 @@ class CyrillicNormalizerTest extends TestCase
      */
     public function replaces_cyrillic_letters($input, $expected): void
     {
-        $normalized = (new CyrillicNormalizer)->normalize($input);
+        $normalized = $this->normalizer->normalize($input);
 
         $this->assertEquals($expected, $normalized);
     }

@@ -29,14 +29,17 @@ final class Cyrillic
     public const UPPERCASE_M = 'М';
     public const UPPERCASE_N = 'Н';
 
-    public const LETTERS = [
-        self::LOWERCASE_A, self::LOWERCASE_E, self::LOWERCASE_O,
-        self::LOWERCASE_R, self::LOWERCASE_S, self::LOWERCASE_U,
-        self::LOWERCASE_H, self::LOWERCASE_I,
-        self::UPPERCASE_A, self::UPPERCASE_V, self::UPPERCASE_E,
-        self::UPPERCASE_O, self::UPPERCASE_R, self::UPPERCASE_S,
-        self::UPPERCASE_T, self::UPPERCASE_U, self::UPPERCASE_H,
-        self::UPPERCASE_I, self::UPPERCASE_K, self::UPPERCASE_M,
-        self::UPPERCASE_N
-    ];
+    public function letters(): array
+    {
+        return [
+            self::LOWERCASE_A, self::LOWERCASE_E, self::LOWERCASE_O,
+            self::LOWERCASE_R, self::LOWERCASE_S, self::LOWERCASE_U,
+            self::LOWERCASE_H, self::LOWERCASE_I,
+            self::UPPERCASE_A, self::UPPERCASE_V, self::UPPERCASE_E,
+            self::UPPERCASE_O, self::UPPERCASE_R, self::UPPERCASE_S,
+            self::UPPERCASE_T, self::UPPERCASE_U, self::UPPERCASE_H,
+            self::UPPERCASE_I, self::UPPERCASE_K, self::UPPERCASE_M,
+            self::UPPERCASE_N
+        ];
+    }
 }
