@@ -5,17 +5,25 @@ declare(strict_types=1);
 namespace App\Tests\Inspector;
 
 use PHPUnit\Framework\TestCase;
+use App\Shared\Letter\Cyrillic;
 use App\Inspector\CyrillicInspector;
 
 class CyrillicInspectorTest extends TestCase
 {
+    private CyrillicInspector $inspector;
+
+    protected function setUp(): void
+    {
+        $this->inspector = new CyrillicInspector(new Cyrillic);
+    }
+
     /**
      * @dataProvider textAndCount
      * @test
      */
     public function counts_cyrillic_letters($input, $count): void
     {
-        $result = (new CyrillicInspector)->check($input);
+        $result = $this->inspector->check($input);
 
         $this->assertEquals($count, $result->count());
     }
@@ -39,7 +47,7 @@ class CyrillicInspectorTest extends TestCase
      */
     public function highlights_found_cyrillic_letters($input, $expected): void
     {
-        $result = (new CyrillicInspector)->check($input);
+        $result = $this->inspector->check($input);
 
         $this->assertEquals($expected, $result->highlighted());
     }

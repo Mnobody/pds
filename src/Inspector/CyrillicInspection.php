@@ -6,13 +6,11 @@ namespace App\Inspector;
 
 final class CyrillicInspection
 {
-    private int $count;
-    private string $highlighted;
-
-    public function __construct(int $count, string $highlighted)
+    public function __construct(
+        private readonly int $count,
+        private readonly string $highlighted
+    )
     {
-        $this->count = $count;
-        $this->highlighted = $highlighted;
     }
 
     public function count(): int
