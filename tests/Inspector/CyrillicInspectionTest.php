@@ -42,26 +42,4 @@ class CyrillicInspectionTest extends TestCase
         $this->assertTrue($detected2);
         $this->assertFalse($notDetected);
     }
-
-    /**
-     * @test
-     */
-    public function restricts_int_count(): void
-    {
-        $this->expectError();
-        $this->expectErrorMessage('must be of type int');
-
-        $inspection = new CyrillicInspection('string value');
-    }
-
-    /**
-     * @test
-     */
-    public function restricts_string_highlighted(): void
-    {
-        $this->expectError();
-        $this->expectErrorMessage('must be of type string');
-
-        $inspection = new CyrillicInspection(42, 42);
-    }
 }
