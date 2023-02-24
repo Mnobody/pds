@@ -27,7 +27,7 @@ final class CyrillicInspector
         return new CyrillicInspection($count, $highlighted);
     }
 
-    private function highlight($string): string
+    private function highlight(string $string): string
     {
         return preg_replace_callback(
             $this->pattern(),

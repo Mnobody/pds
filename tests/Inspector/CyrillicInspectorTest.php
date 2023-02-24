@@ -21,7 +21,7 @@ class CyrillicInspectorTest extends TestCase
      * @dataProvider textAndCount
      * @test
      */
-    public function counts_cyrillic_letters($input, $count): void
+    public function counts_cyrillic_letters(string $input, int $count): void
     {
         $result = $this->inspector->check($input);
 
@@ -45,7 +45,7 @@ class CyrillicInspectorTest extends TestCase
      * @dataProvider textAndHighlight
      * @test
      */
-    public function highlights_found_cyrillic_letters($input, $expected): void
+    public function highlights_found_cyrillic_letters(string $input, string $expected): void
     {
         $result = $this->inspector->check($input);
 
