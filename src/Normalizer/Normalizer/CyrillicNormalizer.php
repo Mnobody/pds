@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Normalizer;
+namespace App\Normalizer\Normalizer;
 
 use App\Shared\Letter\Cyrillic;
+use App\Normalizer\Letter\CyrillicToLatinMapper;
 
-final class CyrillicNormalizer
+final class CyrillicNormalizer implements NormalizerInterface
 {
     public function __construct(
         private readonly Cyrillic $cyrillic,

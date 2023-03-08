@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Normalizer;
+namespace App\Tests\Normalizer\Normalizer;
 
 use App\Shared\Letter\Cyrillic;
 use PHPUnit\Framework\TestCase;
-use App\Normalizer\CyrillicNormalizer;
-use App\Normalizer\CyrillicToLatinMapper;
+use App\Normalizer\Letter\CyrillicToLatinMapper;
+use App\Normalizer\Normalizer\CyrillicNormalizer;
 
 class CyrillicNormalizerTest extends TestCase
 {

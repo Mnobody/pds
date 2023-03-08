@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Normalizer;
+namespace App\Normalizer\Letter;
 
 use App\Shared\Letter\Cyrillic;
-use App\Normalizer\Letter\Latin;
 use App\Normalizer\Exception\LetterIsNotSupportedException;
 
 final class CyrillicToLatinMapper
