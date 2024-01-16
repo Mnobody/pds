@@ -8,17 +8,17 @@ use App\Normalizer\Stemmer\Word;
 
 final class Step1a implements StepInterface
 {
-    private const ONE = 1;
-    private const NO_OFFSET = 0;
+    private const ONE          = 1;
+    private const NO_OFFSET    = 0;
     private const NEGATIVE_TWO = -2;
 
-    private const I_ENDING = 'i';
-    private const S_ENDING = 's';
-    private const IE_ENDING = 'ie';
-    private const SS_ENDING = 'ss';
-    private const US_ENDING = 'us';
-    private const IED_ENDING = 'ied';
-    private const IES_ENDING = 'ies';
+    private const I_ENDING    = 'i';
+    private const S_ENDING    = 's';
+    private const IE_ENDING   = 'ie';
+    private const SS_ENDING   = 'ss';
+    private const US_ENDING   = 'us';
+    private const IED_ENDING  = 'ied';
+    private const IES_ENDING  = 'ies';
     private const SSES_ENDING = 'sses';
 
     public function __invoke(Word $word): Word
@@ -95,10 +95,10 @@ final class Step1a implements StepInterface
     {
         // if contains a vowel not immediately before the 's'
         $shortened = new Word(
-            substr($word->word(), self::NO_OFFSET, self::NEGATIVE_TWO)
+            substr($word->word(), self::NO_OFFSET, self::NEGATIVE_TWO),
         );
 
-        if ($shortened->containsVowel()) {
+        if (true === $shortened->containsVowel()) {
             return $word->cutOffEnding(self::S_ENDING);
         }
 

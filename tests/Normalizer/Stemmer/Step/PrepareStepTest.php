@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Normalizer\Stemmer\Step;
 
-use PHPUnit\Framework\TestCase;
-use App\Normalizer\Stemmer\Word;
 use App\Normalizer\Stemmer\Step\PrepareStep;
+use App\Normalizer\Stemmer\Word;
+use PHPUnit\Framework\TestCase;
 
 class PrepareStepTest extends TestCase
 {
@@ -14,11 +14,11 @@ class PrepareStepTest extends TestCase
      * @dataProvider words
      * @test
      */
-    public function prepares_word(string $input, string $expected): void
+    public function preparesWord(string $input, string $expected): void
     {
         $this->assertEquals(
             $expected,
-            (new PrepareStep)->__invoke(new Word($input))->word()
+            (new PrepareStep())->__invoke(new Word($input))->word(),
         );
     }
 

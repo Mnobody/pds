@@ -10,15 +10,16 @@ final class Step3 implements StepInterface
 {
     private const REPLACEMENTS = [
         'ational' => 'ate',
-        'tional' => 'tion',
-        'alize' => 'al',
+        'tional'  => 'tion',
+        'alize'   => 'al',
 
-        'icate' => 'ic',
-        'iciti' => 'ic',
-        'ical' => 'ic',
+        'icate'   => 'ic',
+        'iciti'   => 'ic',
+        'ical'    => 'ic',
 
         // deletes
-        'ful' => '', 'ness' => ''
+        'ful'     => '',
+        'ness'    => '',
     ];
 
     private const ATIVE_ENDING = 'ative';
@@ -26,14 +27,14 @@ final class Step3 implements StepInterface
     public function __invoke(Word $word): Word
     {
         foreach (self::REPLACEMENTS as $ending => $replacement) {
-            if ($word->endsWith($ending)) {
-                return $word->inR1($ending)
+            if (true === $word->endsWith($ending)) {
+                return (true === $word->inR1($ending))
                     ? $word->replaceEnding($ending, $replacement)
                     : $word;
             }
         }
 
-        if ($word->endsWith(self::ATIVE_ENDING) && $word->inR2(self::ATIVE_ENDING)) {
+        if (true === $word->endsWith(self::ATIVE_ENDING) && true === $word->inR2(self::ATIVE_ENDING)) {
             return $word->cutOffEnding(self::ATIVE_ENDING);
         }
 

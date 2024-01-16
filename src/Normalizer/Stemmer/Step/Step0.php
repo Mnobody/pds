@@ -13,7 +13,7 @@ final class Step0 implements StepInterface
     public function __invoke(Word $word): Word
     {
         foreach (self::ENDINGS_TO_REMOVE as $ending) {
-            if ($word->endsWith($ending)) {
+            if (true === $word->endsWith($ending)) {
                 return $word->cutOffEnding($ending);
             }
         }

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Normalizer\Letter;
 
+use App\Normalizer\Exception\LetterIsNotSupportedException;
+use App\Normalizer\Letter\CyrillicToLatinMapper;
+use App\Normalizer\Letter\Latin;
 use App\Shared\Letter\Cyrillic;
 use PHPUnit\Framework\TestCase;
-use App\Normalizer\Letter\Latin;
-use App\Normalizer\Letter\CyrillicToLatinMapper;
-use App\Normalizer\Exception\LetterIsNotSupportedException;
 
 class CyrillicToLatinMapperTest extends TestCase
 {
@@ -16,11 +16,11 @@ class CyrillicToLatinMapperTest extends TestCase
      * @dataProvider letters
      * @test
      */
-    public function maps_single_cyrillic_letters($input, $expected): void
+    public function mapsSingleCyrillicLetters($input, $expected): void
     {
         $this->assertEquals(
             $expected,
-            (new CyrillicToLatinMapper)->replacement($input)
+            (new CyrillicToLatinMapper())->replacement($input),
         );
     }
 
@@ -57,11 +57,11 @@ class CyrillicToLatinMapperTest extends TestCase
     /**
      * @test
      */
-    public function throws_not_supported_exception(): void
+    public function throwsNotSupportedException(): void
     {
         $this->expectException(LetterIsNotSupportedException::class);
         $this->expectExceptionMessage('Cyrillic letter "ы" is not supported.');
 
-        (new CyrillicToLatinMapper)->replacement('ы');
+        (new CyrillicToLatinMapper())->replacement('ы');
     }
 }

@@ -21,12 +21,12 @@ final class Letter
 
     public function isVowel(): bool
     {
-        return in_array($this->letter, self::VOWELS);
+        return in_array($this->letter, self::VOWELS, true);
     }
 
     public function isValidLiEnding(): bool
     {
-        return in_array($this->letter, self::LI_ENDINGS);
+        return in_array($this->letter, self::LI_ENDINGS, true);
     }
 
     public function equals(self $letter): bool
@@ -37,7 +37,7 @@ final class Letter
     public function equalsToOneOf(array $letters): bool
     {
         foreach ($letters as $letter) {
-            if ($this->equals($letter)) {
+            if (true === $this->equals($letter)) {
                 return true;
             }
         }

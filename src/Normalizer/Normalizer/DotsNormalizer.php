@@ -6,7 +6,7 @@ namespace App\Normalizer\Normalizer;
 
 final class DotsNormalizer implements NormalizerInterface
 {
-    private const DOTS = '...';
+    private const DOTS    = '...';
     private const PATTERN = '/…/u';
 
     public function normalize(string $string): string
@@ -14,7 +14,7 @@ final class DotsNormalizer implements NormalizerInterface
         return preg_replace(
             self::PATTERN,
             self::DOTS,
-            $string
+            $string,
         );
     }
 }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Normalizer\Normalizer;
 
-use PHPUnit\Framework\TestCase;
 use App\Normalizer\Normalizer\DashNormalizer;
+use PHPUnit\Framework\TestCase;
 
 class DashNormalizerTest extends TestCase
 {
@@ -13,11 +13,11 @@ class DashNormalizerTest extends TestCase
      * @dataProvider strings
      * @test
      */
-    public function replaces_hyphens_with_single_dash(string $input, string $expected): void
+    public function replacesHyphensWithSingleDash(string $input, string $expected): void
     {
         $this->assertEquals(
             $expected,
-            (new DashNormalizer)->normalize($input)
+            (new DashNormalizer())->normalize($input),
         );
     }
 

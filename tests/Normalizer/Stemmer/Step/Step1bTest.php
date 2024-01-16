@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Normalizer\Stemmer\Step;
 
-use PHPUnit\Framework\TestCase;
-use App\Normalizer\Stemmer\Word;
 use App\Normalizer\Stemmer\Step\Step1b;
+use App\Normalizer\Stemmer\Word;
+use PHPUnit\Framework\TestCase;
 
 class Step1bTest extends TestCase
 {
@@ -14,11 +14,11 @@ class Step1bTest extends TestCase
      * @dataProvider exceptions
      * @test
      */
-    public function recognizes_exceptions(string $input, string $expected): void
+    public function recognizesExceptions(string $input, string $expected): void
     {
         $this->assertEquals(
             $expected,
-            (new Step1b)->__invoke(new Word($input))->word()
+            (new Step1b())->__invoke(new Word($input))->word(),
         );
     }
 
@@ -40,11 +40,11 @@ class Step1bTest extends TestCase
      * @dataProvider endings
      * @test
      */
-    public function replaces_endings(string $input, string $expected): void
+    public function replacesEndings(string $input, string $expected): void
     {
         $this->assertEquals(
             $expected,
-            (new Step1b)->__invoke(new Word($input))->word()
+            (new Step1b())->__invoke(new Word($input))->word(),
         );
     }
 

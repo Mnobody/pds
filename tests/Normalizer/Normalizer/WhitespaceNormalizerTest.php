@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Normalizer\Normalizer;
 
-use PHPUnit\Framework\TestCase;
 use App\Normalizer\Normalizer\WhitespaceNormalizer;
+use PHPUnit\Framework\TestCase;
 
 class WhitespaceNormalizerTest extends TestCase
 {
@@ -13,11 +13,11 @@ class WhitespaceNormalizerTest extends TestCase
      * @dataProvider strings
      * @test
      */
-    public function replaces_whitespaces_with_single_space(string $input, string $expected): void
+    public function replacesWhitespacesWithSingleSpace(string $input, string $expected): void
     {
         $this->assertEquals(
             $expected,
-            (new WhitespaceNormalizer)->normalize($input)
+            (new WhitespaceNormalizer())->normalize($input),
         );
     }
 

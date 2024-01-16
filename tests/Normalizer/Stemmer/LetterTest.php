@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Tests\Normalizer\Stemmer;
 
-use PHPUnit\Framework\TestCase;
 use App\Normalizer\Stemmer\Letter;
+use PHPUnit\Framework\TestCase;
 
 class LetterTest extends TestCase
 {
     /**
      * @test
      */
-    public function initializes_correctly(): void
+    public function initializesCorrectly(): void
     {
         $letter = new Letter('c');
 
@@ -23,7 +23,7 @@ class LetterTest extends TestCase
      * @dataProvider vowels
      * @test
      */
-    public function recognizes_vowels($input): void
+    public function recognizesVowels($input): void
     {
         $letter = new Letter($input);
 
@@ -46,7 +46,7 @@ class LetterTest extends TestCase
      * @dataProvider liEndings
      * @test
      */
-    public function recognizes_li_endings($input): void
+    public function recognizesLiEndings($input): void
     {
         $letter = new Letter($input);
 
@@ -72,37 +72,37 @@ class LetterTest extends TestCase
     /**
      * @test
      */
-    public function recognizes_same_letters(): void
+    public function recognizesSameLetters(): void
     {
         $this->assertTrue(
             (new Letter('c'))->equals(
-                new Letter('c')
-            )
+                new Letter('c'),
+            ),
         );
     }
 
     /**
      * @test
      */
-    public function recognizes_different_letters(): void
+    public function recognizesDifferentLetters(): void
     {
         $this->assertFalse(
             (new Letter('a'))->equals(
-                new Letter('b')
-            )
+                new Letter('b'),
+            ),
         );
     }
 
     /**
      * @test
      */
-    public function recognizes_same_letter_in_list(): void
+    public function recognizesSameLetterInList(): void
     {
         $this->assertTrue(
             (new Letter('b'))->equalsToOneOf([
                 new Letter('a'),
-                new Letter('b')
-            ])
+                new Letter('b'),
+            ]),
         );
     }
 }

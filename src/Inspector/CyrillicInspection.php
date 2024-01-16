@@ -8,9 +8,8 @@ final class CyrillicInspection
 {
     public function __construct(
         private readonly int $count,
-        private readonly string $highlighted
-    )
-    {
+        private readonly string $highlighted,
+    ) {
     }
 
     public function count(): int
