@@ -11,7 +11,7 @@ final class FinalStep implements StepInterface
     public function __invoke(Word $word): Word
     {
         return new Word(
-            strtolower($word->word())
+            strtolower($word->word()),
         );
     }
 }

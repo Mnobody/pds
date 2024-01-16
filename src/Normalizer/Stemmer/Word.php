@@ -6,22 +6,22 @@ namespace App\Normalizer\Stemmer;
 
 final class Word
 {
-    private const ONE = 1;
-    private const TWO = 2;
-    private const THREE = 3;
-    private const NO_OFFSET = 0;
-    private const NEGATIVE_ONE = -1;
-    private const NEGATIVE_THREE = -3;
+    private const ONE                      = 1;
+    private const TWO                      = 2;
+    private const THREE                    = 3;
+    private const NO_OFFSET                = 0;
+    private const NEGATIVE_ONE             = -1;
+    private const NEGATIVE_THREE           = -3;
     private const MINIMAL_SUPPORTED_LENGTH = 2;
 
-    private const APOSTROPHE = '\'';
+    private const APOSTROPHE  = '\'';
     private const LOWERCASE_Y = 'y';
     private const UPPERCASE_Y = 'Y';
     private const LOWERCASE_W = 'w';
     private const LOWERCASE_X = 'x';
 
-    private const GENER_STARTING = 'gener';
-    private const ARSEN_STARTING = 'arsen';
+    private const GENER_STARTING  = 'gener';
+    private const ARSEN_STARTING  = 'arsen';
     private const COMMUN_STARTING = 'commun';
 
     public function __construct(private readonly string $word)
@@ -56,42 +56,42 @@ final class Word
     public function cutOffEnding(string $ending): self
     {
         return new self(
-            substr($this->word, self::NO_OFFSET, -strlen($ending))
+            substr($this->word, self::NO_OFFSET, -strlen($ending)),
         );
     }
 
     public function attachEnding(string $ending): self
     {
         return new self(
-            implode([$this->word, $ending])
+            implode([$this->word, $ending]),
         );
     }
 
     public function replaceEnding(string $old, string $new): self
     {
         return new self(
-            implode([$this->cutOffEnding($old)->word(), $new])
+            implode([$this->cutOffEnding($old)->word(), $new]),
         );
     }
 
     public function cutOffLastLetter(): self
     {
         return new self(
-            substr($this->word, self::NO_OFFSET, self::NEGATIVE_ONE)
+            substr($this->word, self::NO_OFFSET, self::NEGATIVE_ONE),
         );
     }
 
     public function lastLetter(): Letter
     {
         return new Letter(
-            substr($this->word, self::NEGATIVE_ONE)
+            substr($this->word, self::NEGATIVE_ONE),
         );
     }
 
     public function containsVowel(): bool
     {
         foreach ($this->letters() as $letter) {
-            if ($letter->isVowel()) {
+            if (true === $letter->isVowel()) {
                 return true;
             }
         }
@@ -105,12 +105,12 @@ final class Word
 
         $first = reset($letters);
 
-        if ($first->equals(new Letter(self::APOSTROPHE))) {
+        if (true === $first->equals(new Letter(self::APOSTROPHE))) {
             unset($letters[key($letters)]);
         }
 
         return new self(
-            $this->implodeLetters($letters)
+            $this->implodeLetters($letters),
         );
     }
 
@@ -120,12 +120,12 @@ final class Word
 
         $first = reset($letters);
 
-        if ($first->equals(new Letter(self::LOWERCASE_Y))) {
+        if (true === $first->equals(new Letter(self::LOWERCASE_Y))) {
             $letters[key($letters)] = new Letter(self::UPPERCASE_Y);
         }
 
         return new self(
-            $this->implodeLetters($letters)
+            $this->implodeLetters($letters),
         );
     }
 
@@ -135,9 +135,8 @@ final class Word
 
         $previous = reset($letters);
 
-        while ($current = next($letters)) {
-
-            if ($current->equals(new Letter(self::LOWERCASE_Y)) && $previous->isVowel()) {
+        while (($current = next($letters)) instanceof Letter) {
+            if (true === $current->equals(new Letter(self::LOWERCASE_Y)) && true === $previous->isVowel()) {
                 $letters[key($letters)] = new Letter(self::UPPERCASE_Y);
             }
 
@@ -145,7 +144,7 @@ final class Word
         }
 
         return new self(
-            $this->implodeLetters($letters)
+            $this->implodeLetters($letters),
         );
     }
 
@@ -169,9 +168,9 @@ final class Word
         $letters = $this->letters();
 
         // b) - a vowel at the beginning of the word followed by a non-vowel
-        if (count($letters) === self::TWO) {
+        if (self::TWO === count($letters)) {
             list($first, $second) = array_slice($letters, self::NO_OFFSET, self::TWO);
-            if ($first->isVowel() && !$second->isVowel()) {
+            if (true === $first->isVowel() && false === $second->isVowel()) {
                 return true;
             }
         }
@@ -183,13 +182,14 @@ final class Word
             $list = [
                 new Letter(self::LOWERCASE_W),
                 new Letter(self::LOWERCASE_X),
-                new Letter(self::UPPERCASE_Y)
+                new Letter(self::UPPERCASE_Y),
             ];
 
             if (
-                !$preceding->isVowel() &&
-                $letter->isVowel() &&
-                !$following->isVowel() && !$following->equalsToOneOf($list)
+                false === $preceding->isVowel()
+                && true === $letter->isVowel()
+                && false === $following->isVowel()
+                && false === $following->equalsToOneOf($list)
             ) {
                 return true;
             }
@@ -201,17 +201,15 @@ final class Word
     public function letters(): array
     {
         return array_map(
-            function($char) {
-                return new Letter($char);
-            },
-            mb_str_split($this->word)
+            static fn ($char) => new Letter($char),
+            mb_str_split($this->word),
         );
     }
 
     private function getR1(): string
     {
         foreach ([self::GENER_STARTING, self::ARSEN_STARTING, self::COMMUN_STARTING] as $starting) {
-            if ($this->startsWith($starting)) {
+            if (true === $this->startsWith($starting)) {
                 return substr($this->word, strlen($starting));
             }
         }
@@ -224,13 +222,12 @@ final class Word
 
         $previous = reset($letters);
 
-        while ($current = next($letters)) {
-
-            if ($track) {
+        while (($current = next($letters)) instanceof Letter) {
+            if (true === $track) {
                 $r1[] = $current;
             }
 
-            if (!$current->isVowel() && $previous->isVowel()) {
+            if (false === $current->isVowel() && true === $previous->isVowel()) {
                 $track = true;
             }
 
@@ -250,13 +247,12 @@ final class Word
 
         $previous = reset($letters);
 
-        while ($current = next($letters)) {
-
-            if ($track) {
+        while (($current = next($letters)) instanceof Letter) {
+            if (true === $track) {
                 $r2[] = $current;
             }
 
-            if (!$current->isVowel() && $previous->isVowel()) {
+            if (false === $current->isVowel() && true === $previous->isVowel()) {
                 $track = true;
             }
 
@@ -270,11 +266,9 @@ final class Word
     {
         return implode(
             array_map(
-                function($letter) {
-                    return $letter->letter();
-                },
-                $letters
-            )
+                static fn ($letter) => $letter->letter(),
+                $letters,
+            ),
         );
     }
 }

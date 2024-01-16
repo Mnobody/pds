@@ -6,7 +6,7 @@ namespace App\Normalizer\Normalizer;
 
 final class DoubleQuoteMarkNormalizer implements NormalizerInterface
 {
-    private const MARK = '"';
+    private const MARK    = '"';
     private const PATTERN = '/([«»“”„‟]|\'\'|``)/u';
 
     public function normalize(string $string): string
@@ -14,7 +14,7 @@ final class DoubleQuoteMarkNormalizer implements NormalizerInterface
         return preg_replace(
             self::PATTERN,
             self::MARK,
-            $string
+            $string,
         );
     }
 }

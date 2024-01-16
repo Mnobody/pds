@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Normalizer\Stemmer\Step;
 
-use App\Normalizer\Stemmer\Word;
 use App\Normalizer\Stemmer\Letter;
+use App\Normalizer\Stemmer\Word;
 
 final class Step5 implements StepInterface
 {
@@ -14,21 +14,21 @@ final class Step5 implements StepInterface
 
     public function __invoke(Word $word): Word
     {
-        if ($word->endsWith(self::E_ENDING)) {
+        if (true === $word->endsWith(self::E_ENDING)) {
             $shortened = $word->cutOffEnding(self::E_ENDING);
 
-            if ($word->inR2(self::E_ENDING)) {
+            if (true === $word->inR2(self::E_ENDING)) {
                 return $shortened;
             }
 
-            if ($word->inR1(self::E_ENDING) && !$shortened->endsWithShortSyllable()) {
+            if (true === $word->inR1(self::E_ENDING) && false === $shortened->endsWithShortSyllable()) {
                 return $shortened;
             }
         }
 
-        if ($word->endsWith(self::L_ENDING) && $word->inR2(self::L_ENDING)) {
+        if (true === $word->endsWith(self::L_ENDING) && true === $word->inR2(self::L_ENDING)) {
             $shortened = $word->cutOffEnding(self::L_ENDING);
-            if ($shortened->lastLetter()->equals(new Letter(self::L_ENDING))) {
+            if (true === $shortened->lastLetter()->equals(new Letter(self::L_ENDING))) {
                 return $shortened;
             }
         }

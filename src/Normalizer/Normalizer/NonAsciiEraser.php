@@ -6,7 +6,7 @@ namespace App\Normalizer\Normalizer;
 
 final class NonAsciiEraser implements NormalizerInterface
 {
-    private const EMPTY = '';
+    private const EMPTY   = '';
     private const PATTERN = '/[^[:ascii:]]/';
 
     public function normalize(string $string): string
@@ -14,7 +14,7 @@ final class NonAsciiEraser implements NormalizerInterface
         return preg_replace(
             self::PATTERN,
             self::EMPTY,
-            $string
+            $string,
         );
     }
 }

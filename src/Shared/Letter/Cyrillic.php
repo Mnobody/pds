@@ -39,7 +39,7 @@ final class Cyrillic
             self::UPPERCASE_O, self::UPPERCASE_R, self::UPPERCASE_S,
             self::UPPERCASE_T, self::UPPERCASE_U, self::UPPERCASE_H,
             self::UPPERCASE_I, self::UPPERCASE_K, self::UPPERCASE_M,
-            self::UPPERCASE_N
+            self::UPPERCASE_N,
         ];
     }
 }

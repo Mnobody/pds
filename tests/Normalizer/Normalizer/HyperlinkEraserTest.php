@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Normalizer\Normalizer;
 
-use PHPUnit\Framework\TestCase;
 use App\Normalizer\Normalizer\HyperlinkEraser;
+use PHPUnit\Framework\TestCase;
 
 class HyperlinkEraserTest extends TestCase
 {
@@ -13,11 +13,11 @@ class HyperlinkEraserTest extends TestCase
      * @dataProvider strings
      * @test
      */
-    public function removes_hyperlinks(string $input, string $expected): void
+    public function removesHyperlinks(string $input, string $expected): void
     {
         $this->assertEquals(
             $expected,
-            (new HyperlinkEraser)->normalize($input)
+            (new HyperlinkEraser())->normalize($input),
         );
     }
 

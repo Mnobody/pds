@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Normalizer;
 
-use PHPUnit\Framework\TestCase;
 use App\Normalizer\Normalizer;
+use PHPUnit\Framework\TestCase;
 
 class NormalizerTest extends TestCase
 {
@@ -13,11 +13,11 @@ class NormalizerTest extends TestCase
      * @dataProvider strings
      * @test
      */
-    public function correctly_normalizes(string $input, string $expected): void
+    public function correctlyNormalizes(string $input, string $expected): void
     {
         $this->assertEquals(
             $expected,
-            (new Normalizer)->normalize($input)
+            (new Normalizer())->normalize($input),
         );
     }
 

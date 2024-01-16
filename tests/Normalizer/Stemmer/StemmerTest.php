@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Normalizer\Stemmer;
 
-use PHPUnit\Framework\TestCase;
-
 use App\Normalizer\Stemmer\Stemmer;
+use PHPUnit\Framework\TestCase;
 
 class StemmerTest extends TestCase
 {
@@ -14,9 +13,9 @@ class StemmerTest extends TestCase
      * @dataProvider letters
      * @test
      */
-    public function works_correctly_for_small_sample($input, $expected): void
+    public function worksCorrectlyForSmallSample($input, $expected): void
     {
-        $stemmed = (new Stemmer)->stem($input);
+        $stemmed = (new Stemmer())->stem($input);
 
         $this->assertEquals($expected, $stemmed);
     }
@@ -122,9 +121,9 @@ class StemmerTest extends TestCase
      * @dataProvider vocabulary
      * @test
      */
-    public function works_correctly($input, $expected): void
+    public function worksCorrectly($input, $expected): void
     {
-        $stemmed = (new Stemmer)->stem($input);
+        $stemmed = (new Stemmer())->stem($input);
 
         $this->assertEquals($expected, $stemmed);
     }
@@ -135,7 +134,7 @@ class StemmerTest extends TestCase
 
         $handle = fopen(__DIR__ . '/vocabulary.txt', 'r');
 
-        while (($line = fgets($handle)) !== false) {
+        while (false !== ($line = fgets($handle))) {
             $vocabulary[] = explode('=', trim($line));
         }
 

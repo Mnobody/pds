@@ -14,17 +14,17 @@ final class Step1b implements StepInterface
     ];
 
     private const DOUBLES = [
-        'bb', 'dd', 'ff', 'gg', 'mm', 'nn', 'pp', 'rr', 'tt'
+        'bb', 'dd', 'ff', 'gg', 'mm', 'nn', 'pp', 'rr', 'tt',
     ];
 
-    private const EE_ENDING = 'ee';
-    private const EED_ENDING = 'eed';
+    private const EE_ENDING    = 'ee';
+    private const EED_ENDING   = 'eed';
     private const EEDLY_ENDING = 'eedly';
 
     private const INGLY_ENDING = 'ingly';
-    private const EDLY_ENDING = 'edly';
-    private const ING_ENDING = 'ing';
-    private const ED_ENDING = 'ed';
+    private const EDLY_ENDING  = 'edly';
+    private const ING_ENDING   = 'ing';
+    private const ED_ENDING    = 'ed';
 
     private const AT_ENDING = 'at';
     private const BL_ENDING = 'bl';
@@ -34,7 +34,7 @@ final class Step1b implements StepInterface
 
     public function __invoke(Word $word): Word
     {
-        if (in_array($word->word(), self::EXCEPTIONS)) {
+        if (true === in_array($word->word(), self::EXCEPTIONS, true)) {
             return $word;
         }
 
@@ -58,7 +58,7 @@ final class Step1b implements StepInterface
 
     private function replaceEEDEnding(Word $word): Word
     {
-        return $word->inR1(self::EED_ENDING)
+        return (true === $word->inR1(self::EED_ENDING))
             ? $word->replaceEnding(self::EED_ENDING, self::EE_ENDING)
             : $word;
     }
@@ -70,7 +70,7 @@ final class Step1b implements StepInterface
 
     private function replaceEEDLYEnding(Word $word): Word
     {
-        return $word->inR1(self::EEDLY_ENDING)
+        return (true === $word->inR1(self::EEDLY_ENDING))
             ? $word->replaceEnding(self::EEDLY_ENDING, self::EE_ENDING)
             : $word;
     }
@@ -119,21 +119,21 @@ final class Step1b implements StepInterface
     {
         $shortened = $word->cutOffEnding($ending);
 
-        if (!$shortened->containsVowel()) {
+        if (false === $shortened->containsVowel()) {
             return $word;
         }
 
         foreach ([self::AT_ENDING, self::BL_ENDING, self::IZ_ENDING] as $ending) {
-            if ($shortened->endsWith($ending)) {
+            if (true === $shortened->endsWith($ending)) {
                 return $shortened->attachEnding(self::E_ENDING);
             }
         }
 
-        if ($this->endsWithDouble($shortened)) {
+        if (true === $this->endsWithDouble($shortened)) {
             return $shortened->cutOffLastLetter();
         }
 
-        if ($this->isShort($shortened)) {
+        if (true === $this->isShort($shortened)) {
             return $shortened->attachEnding(self::E_ENDING);
         }
 
@@ -143,7 +143,7 @@ final class Step1b implements StepInterface
     private function endsWithDouble(Word $word): bool
     {
         foreach (self::DOUBLES as $double) {
-            if ($word->endsWith($double)) {
+            if (true === $word->endsWith($double)) {
                 return true;
             }
         }

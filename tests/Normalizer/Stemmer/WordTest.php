@@ -4,113 +4,113 @@ declare(strict_types=1);
 
 namespace App\Tests\Normalizer\Stemmer;
 
-use PHPUnit\Framework\TestCase;
-use App\Normalizer\Stemmer\Word;
 use App\Normalizer\Stemmer\Letter;
+use App\Normalizer\Stemmer\Word;
+use PHPUnit\Framework\TestCase;
 
 class WordTest extends TestCase
 {
     /**
      * @test
      */
-    public function initializes_correctly(): void
+    public function initializesCorrectly(): void
     {
         $this->assertEquals(
             'example',
-            (new Word('example'))->word()
+            (new Word('example'))->word(),
         );
     }
 
     /**
      * @test
      */
-    public function returns_correct_length(): void
+    public function returnsCorrectLength(): void
     {
         $this->assertEquals(
             7,
-            (new Word('example'))->length()
+            (new Word('example'))->length(),
         );
     }
 
     /**
      * @test
      */
-    public function ends_with(): void
+    public function endsWith(): void
     {
         $this->assertTrue(
-            (new Word('example'))->endsWith('ple')
+            (new Word('example'))->endsWith('ple'),
         );
     }
 
     /**
      * @test
      */
-    public function starts_with(): void
+    public function startsWith(): void
     {
         $this->assertTrue(
-            (new Word('example'))->startsWith('exa')
+            (new Word('example'))->startsWith('exa'),
         );
     }
 
     /**
      * @test
      */
-    public function cuts_off_ending(): void
+    public function cutsOffEnding(): void
     {
         $this->assertEquals(
             'exam',
-            (new Word('example'))->cutOffEnding('ple')->word()
+            (new Word('example'))->cutOffEnding('ple')->word(),
         );
     }
 
     /**
      * @test
      */
-    public function attaches_ending(): void
+    public function attachesEnding(): void
     {
         $this->assertEquals(
             'example',
-            (new Word('exam'))->attachEnding('ple')->word()
+            (new Word('exam'))->attachEnding('ple')->word(),
         );
     }
 
     /**
      * @test
      */
-    public function replaces_ending(): void
+    public function replacesEnding(): void
     {
         $this->assertEquals(
             'consolidates',
-            (new Word('consolidating'))->replaceEnding('ing', 'es')->word()
+            (new Word('consolidating'))->replaceEnding('ing', 'es')->word(),
         );
     }
 
     /**
      * @test
      */
-    public function cuts_off_last_letter(): void
+    public function cutsOffLastLetter(): void
     {
         $this->assertEquals(
             'exampl',
-            (new Word('example'))->cutOffLastLetter()->word()
+            (new Word('example'))->cutOffLastLetter()->word(),
         );
     }
 
     /**
      * @test
      */
-    public function returns_last_letter(): void
+    public function returnsLastLetter(): void
     {
         $this->assertEquals(
             'n',
-            (new Word('consolidation'))->lastLetter()->letter()
+            (new Word('consolidation'))->lastLetter()->letter(),
         );
     }
 
     /**
      * @test
      */
-    public function contains_vowel(): void
+    public function containsVowel(): void
     {
         $this->assertTrue((new Word('consolidation'))->containsVowel());
     }
@@ -118,7 +118,7 @@ class WordTest extends TestCase
     /**
      * @test
      */
-    public function contains_no_vowels(): void
+    public function containsNoVowels(): void
     {
         $this->assertFalse((new Word('brr'))->containsVowel());
     }
@@ -126,7 +126,7 @@ class WordTest extends TestCase
     /**
      * @test
      */
-    public function determines_supported_length(): void
+    public function determinesSupportedLength(): void
     {
         $this->assertTrue((new Word('brr'))->isSupportedLength());
     }
@@ -134,7 +134,7 @@ class WordTest extends TestCase
     /**
      * @test
      */
-    public function determines_not_supported_length(): void
+    public function determinesNotSupportedLength(): void
     {
         $this->assertFalse((new Word('am'))->isSupportedLength());
     }
@@ -143,11 +143,11 @@ class WordTest extends TestCase
      * @dataProvider apostrophes
      * @test
      */
-    public function trims_leading_apostrophe(string $input, string $expected): void
+    public function trimsLeadingApostrophe(string $input, string $expected): void
     {
         $this->assertEquals(
             $expected,
-            (new Word($input))->trimLeadingApostrophe()->word()
+            (new Word($input))->trimLeadingApostrophe()->word(),
         );
     }
 
@@ -162,22 +162,22 @@ class WordTest extends TestCase
     /**
      * @test
      */
-    public function casts_to_uppercase_leading_y(): void
+    public function castsToUppercaseLeadingY(): void
     {
         $this->assertEquals(
             'Yes',
-            (new Word('yes'))->castToUppercaseLeadingY()->word()
+            (new Word('yes'))->castToUppercaseLeadingY()->word(),
         );
     }
 
     /**
      * @test
      */
-    public function casts_to_uppercase_y_after_vowel(): void
+    public function castsToUppercaseYAfterVowel(): void
     {
         $this->assertEquals(
             'boYish',
-            (new Word('boyish'))->castToUppercaseYAfterVowel()->word()
+            (new Word('boyish'))->castToUppercaseYAfterVowel()->word(),
         );
     }
 
@@ -185,10 +185,10 @@ class WordTest extends TestCase
      * @dataProvider hasR1
      * @test
      */
-    public function determines_has_r1(string $input): void
+    public function determinesHasR1(string $input): void
     {
         $this->assertTrue(
-            (new Word($input))->hasR1()
+            (new Word($input))->hasR1(),
         );
     }
 
@@ -198,7 +198,7 @@ class WordTest extends TestCase
             ['beautiful'],
             ['agreed'],
             ['agreedly'],
-            ['generously']
+            ['generously'],
         ];
     }
 
@@ -206,10 +206,10 @@ class WordTest extends TestCase
      * @dataProvider hasNoR1
      * @test
      */
-    public function determines_has_no_r1(string $input): void
+    public function determinesHasNoR1(string $input): void
     {
         $this->assertFalse(
-            (new Word($input))->hasR1()
+            (new Word($input))->hasR1(),
         );
     }
 
@@ -226,10 +226,10 @@ class WordTest extends TestCase
      * @dataProvider inR1
      * @test
      */
-    public function determines_in_r1(string $input, string $expected): void
+    public function determinesInR1(string $input, string $expected): void
     {
         $this->assertTrue(
-            (new Word($input))->inR1($expected)
+            (new Word($input))->inR1($expected),
         );
     }
 
@@ -249,10 +249,10 @@ class WordTest extends TestCase
      * @dataProvider notInR1
      * @test
      */
-    public function determines_not_in_r1(string $input, string $expected): void
+    public function determinesNotInR1(string $input, string $expected): void
     {
         $this->assertFalse(
-            (new Word($input))->inR1($expected)
+            (new Word($input))->inR1($expected),
         );
     }
 
@@ -270,10 +270,10 @@ class WordTest extends TestCase
      * @dataProvider endsWithShortSyllable
      * @test
      */
-    public function determines_when_ends_with_short_syllable(string $input): void
+    public function determinesWhenEndsWithShortSyllable(string $input): void
     {
         $this->assertTrue(
-            (new Word($input))->endsWithShortSyllable()
+            (new Word($input))->endsWithShortSyllable(),
         );
     }
 
@@ -293,10 +293,10 @@ class WordTest extends TestCase
      * @dataProvider notEndsWithShortSyllable
      * @test
      */
-    public function determines_when_not_ends_with_short_syllable(string $input): void
+    public function determinesWhenNotEndsWithShortSyllable(string $input): void
     {
         $this->assertFalse(
-            (new Word($input))->endsWithShortSyllable()
+            (new Word($input))->endsWithShortSyllable(),
         );
     }
 
@@ -312,11 +312,11 @@ class WordTest extends TestCase
     /**
      * @test
      */
-    public function splits_word_into_letters(): void
+    public function splitsWordIntoLetters(): void
     {
         $this->assertEquals(
             [new Letter('s'), new Letter('o'), new Letter('m'), new Letter('e')],
-            (new Word('some'))->letters()
+            (new Word('some'))->letters(),
         );
     }
 
@@ -324,10 +324,10 @@ class WordTest extends TestCase
      * @dataProvider inR2
      * @test
      */
-    public function determines_in_r2(string $input, string $expected): void
+    public function determinesInR2(string $input, string $expected): void
     {
         $this->assertTrue(
-            (new Word($input))->inR2($expected)
+            (new Word($input))->inR2($expected),
         );
     }
 
@@ -345,10 +345,10 @@ class WordTest extends TestCase
      * @dataProvider notInR2
      * @test
      */
-    public function determines_not_in_r2(string $input, string $expected): void
+    public function determinesNotInR2(string $input, string $expected): void
     {
         $this->assertFalse(
-            (new Word($input))->inR2($expected)
+            (new Word($input))->inR2($expected),
         );
     }
 

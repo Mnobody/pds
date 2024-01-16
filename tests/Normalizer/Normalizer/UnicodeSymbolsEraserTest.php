@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Normalizer\Normalizer;
 
-use PHPUnit\Framework\TestCase;
 use App\Normalizer\Normalizer\UnicodeSymbolsEraser;
+use PHPUnit\Framework\TestCase;
 
 class UnicodeSymbolsEraserTest extends TestCase
 {
@@ -13,11 +13,11 @@ class UnicodeSymbolsEraserTest extends TestCase
      * @dataProvider strings
      * @test
      */
-    public function removes_unicode_symbols(string $input, string $expected): void
+    public function removesUnicodeSymbols(string $input, string $expected): void
     {
         $this->assertEquals(
             $expected,
-            (new UnicodeSymbolsEraser)->normalize($input)
+            (new UnicodeSymbolsEraser())->normalize($input),
         );
     }
 

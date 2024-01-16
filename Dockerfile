@@ -1,4 +1,3 @@
-
 FROM composer:2.6.6 AS composer
 
 FROM php:8.2-fpm-alpine3.19 AS php

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Normalizer\Letter;
 
-use App\Shared\Letter\Cyrillic;
 use App\Normalizer\Exception\LetterIsNotSupportedException;
+use App\Shared\Letter\Cyrillic;
 
 final class CyrillicToLatinMapper
 {
@@ -34,7 +34,7 @@ final class CyrillicToLatinMapper
             Cyrillic::UPPERCASE_M => Latin::UPPERCASE_M,
             Cyrillic::UPPERCASE_N => Latin::UPPERCASE_H,
             default => throw new LetterIsNotSupportedException(
-                sprintf('Cyrillic letter "%s" is not supported.', $cyrillic)
+                sprintf('Cyrillic letter "%s" is not supported.', $cyrillic),
             ),
         };
     }

@@ -14,7 +14,7 @@ final class NewlineNormalizer implements NormalizerInterface
         return preg_replace(
             self::PATTERN,
             self::NEWLINE,
-            $string
+            $string,
         );
     }
 }
