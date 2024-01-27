@@ -12,13 +12,17 @@
 
 ### Text Comparison (_tf-idf_)
 
-- [ ] Texts comparison (cosine similarity using _tf_ factor)
-- [ ] Sentences comparison (cosine similarity using _idf_ factor)
-- [ ] Handle synonyms and/or hyponyms (WordNet https://wordnet.princeton.edu/ - store in DB)
+- [x] Texts comparison (cosine similarity using _tf_ factor)
+- [x] Sentences comparison (cosine similarity using _idf_ factor)
+- [ ] Handle synonyms and/or hyponyms (https://wordnet.princeton.edu)
+
+### Report
+
+- [ ] Compose a verification report
 
 ---
 
 ### Text Input
 
-- [ ] Upload and Store PDF in min.io (S3 compatible object store)
+- [ ] Upload and Store PDF in min.io (S3 compatible object storage)
 - [ ] Read PDF from min.io
