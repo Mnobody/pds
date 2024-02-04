@@ -1,0 +1,35 @@
+parameters:
+  paths:
+    - ./src
+  exclude_files:
+    - '#.*\/src\/.*\/Infrastucture\/Port\/.*#'
+    - '#.*\/src\/.*\/Infrastucture\/Adapter\/.*#'
+
+  layers:
+    - name: Shared
+      collectors:
+        - type: directory
+          regex: /src/Shared/.*
+
+    - name: Orchestrator
+      collectors:
+        - type: directory
+          regex: /src/Orchestrator/.*
+
+    - name: EnglishNormalizer
+      collectors: 
+        - type: directory
+          regex: /src/EnglishNormalizer/.*
+
+    - name: EnglishStemmer
+      collectors: 
+        - type: directory
+          regex: /src/EnglishStemmer/.*
+
+  ruleset:
+    Orchestrator:
+      - Shared
+    EnglishNormalizer:
+      - Shared
+    EnglishStemmer:
+      - Shared

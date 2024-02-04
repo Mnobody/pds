@@ -16,6 +16,8 @@
 - [x] Sentences comparison (cosine similarity using _idf_ factor)
 - [ ] Handle synonyms and/or hyponyms (https://wordnet.princeton.edu)
 
+----
+
 ### Report
 
 - [ ] Compose a verification report

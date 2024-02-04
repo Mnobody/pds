@@ -2,9 +2,12 @@ DOCKER_EXEC_PHP = docker-compose exec php
 PHPUNIT  = ./vendor/bin/phpunit
 PHPCS    = ./vendor/bin/phpcs
 PHPLINT  = ./vendor/bin/parallel-lint
+DEPTRAC  = ./vendor/bin/deptrac
 COMPOSER = composer
 
-# code quality
+###
+### ----------------------------------- code quality
+###
 
 phplint:
 	$(DOCKER_EXEC_PHP) $(PHPLINT) --exclude .idea --exclude .git --exclude vendor --exclude var .
@@ -12,18 +15,28 @@ phplint:
 phpcs:
 	$(DOCKER_EXEC_PHP) $(PHPCS) -sp
 
-quality: phplint phpcs
+deptrac-layers:
+	$(DOCKER_EXEC_PHP) $(DEPTRAC) analyse --config-file=deptrac-layers.yml
+
+deptrac-modules:
+	$(DOCKER_EXEC_PHP) $(DEPTRAC) analyse --config-file=deptrac-modules.yml
+
+quality: phplint phpcs deptrac-layers deptrac-modules
 
 q: quality
 
-# tests
+###
+### ----------------------------------- tests
+###
 
 phpunit:
 	$(DOCKER_EXEC_PHP) $(PHPUNIT)
 
 pu: phpunit
 
-# other
+###
+### ----------------------------------- other
+###
 
 outdated-php-packages:
 	$(DOCKER_EXEC_PHP) $(COMPOSER) show -o -D --strict
