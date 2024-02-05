@@ -2,34 +2,103 @@ parameters:
   paths:
     - ./src
   exclude_files:
-    - '#.*\/src\/.*\/Infrastucture\/Port\/.*#'
-    - '#.*\/src\/.*\/Infrastucture\/Adapter\/.*#'
+    - '#.*\/src\/.*\/Infrastructure\/Port\/.*#'
+    - '#.*\/src\/.*\/Infrastructure\/Adapter\/.*#'
+    - '/src/Application/Infrastructure/Kernel.php'
 
   layers:
+    - name: Application
+      collectors:
+        - type: directory
+          regex: /src/Application/.*
+
     - name: Shared
       collectors:
         - type: directory
           regex: /src/Shared/.*
+
+    - name: Document
+      collectors:
+        - type: directory
+          regex: /src/Document/.*
 
     - name: Orchestrator
       collectors:
         - type: directory
           regex: /src/Orchestrator/.*
 
-    - name: EnglishNormalizer
-      collectors: 
+    - name: EnglishLanguageChecker
+      collectors:
         - type: directory
-          regex: /src/EnglishNormalizer/.*
+          regex: /src/EnglishLanguageChecker/.*
+
+    - name: CyrillicInspector
+      collectors:
+        - type: directory
+          regex: /src/CyrillicInspector/.*
+
+    - name: CyrillicReport
+      collectors:
+        - type: directory
+          regex: /src/CyrillicReport/.*
+
+    - name: CyrillicNormalizer
+      collectors:
+        - type: directory
+          regex: /src/CyrillicNormalizer/.*
+
+    - name: Normalizer
+      collectors:
+        - type: directory
+          regex: /src/Normalizer/.*
+
+    - name: EnglishSentenceSplitter
+      collectors:
+        - type: directory
+          regex: /src/EnglishSentenceSplitter/.*
 
     - name: EnglishStemmer
-      collectors: 
+      collectors:
         - type: directory
           regex: /src/EnglishStemmer/.*
 
+    - name: DocumentComparator
+      collectors:
+        - type: directory
+          regex: /src/DocumentComparator/.*
+
+    - name: SentenceComparator
+      collectors:
+        - type: directory
+          regex: /src/SentenceComparator/.*
+
+    - name: Report
+      collectors:
+        - type: directory
+          regex: /src/Report/.*
+
   ruleset:
+    Document:
+      - Shared
     Orchestrator:
       - Shared
-    EnglishNormalizer:
+    EnglishLanguageChecker:
+      - Shared
+    CyrillicInspector:
+      - Shared
+    CyrillicReport:
+      - Shared
+    CyrillicNormalizer:
+      - Shared
+    Normalizer:
+      - Shared
+    EnglishSentenceSplitter:
       - Shared
     EnglishStemmer:
+      - Shared
+    DocumentComparator:
+      - Shared
+    SentenceComparator:
+      - Shared
+    Report:
       - Shared

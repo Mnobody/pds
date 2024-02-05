@@ -16,10 +16,10 @@ phpcs:
 	$(DOCKER_EXEC_PHP) $(PHPCS) -sp
 
 deptrac-layers:
-	$(DOCKER_EXEC_PHP) $(DEPTRAC) analyse --config-file=deptrac-layers.yml
+	$(DOCKER_EXEC_PHP) $(DEPTRAC) analyse --config-file=deptrac-layers.yml --report-uncovered
 
 deptrac-modules:
-	$(DOCKER_EXEC_PHP) $(DEPTRAC) analyse --config-file=deptrac-modules.yml
+	$(DOCKER_EXEC_PHP) $(DEPTRAC) analyse --config-file=deptrac-modules.yml --report-uncovered
 
 quality: phplint phpcs deptrac-layers deptrac-modules
 

@@ -1,14 +1,14 @@
 services:
-    php:
-        container_name: pdt-php
-        build:
-            context: .
-            target: php
-        volumes:
-            - .:/srv/pdt:rw,cached
-        networks:
-            - pdt
+  php:
+    container_name: pdt-php
+    build:
+      context: .
+      target: php
+    volumes:
+      - .:/srv/pdt:rw,cached
+    networks:
+      - pdt
 
 networks:
-    pdt:
-        name: pdt
+  pdt:
+    name: pdt

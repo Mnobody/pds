@@ -34,13 +34,29 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Application\\": "src/Application",
+            "Shared\\": "src/Shared",
+            "Document\\": "src/Document",
+            "Orchestrator\\": "src/Orchestrator",
+            "EnglishLanguageChecker\\": "src/EnglishLanguageChecker",
+            "CyrillicInspector\\": "src/CyrillicInspector",
+            "CyrillicReport\\": "src/CyrillicReport",
+            "CyrillicNormalizer\\": "src/CyrillicNormalizer",
+            "Normalizer\\": "src/Normalizer",
+            "EnglishSentenceSplitter\\": "src/EnglishSentenceSplitter",
+            "EnglishStemmer\\": "src/EnglishStemmer",
+            "DocumentComparator\\": "src/DocumentComparator",
+            "SentenceComparator\\": "src/SentenceComparator",
+            "Report\\": "src/Report"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
-        }
+            "Tests\\": "tests/"
+        },
+        "classmap": [
+            "src/Application/Infrastructure/Kernel.php"
+        ]
     },
     "replace": {
         "symfony/polyfill-ctype": "*",

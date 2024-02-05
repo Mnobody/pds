@@ -1,6 +1,8 @@
 parameters:
   paths:
     - ./src
+  exclude_files:
+    - '/src/Application/Infrastructure/Kernel.php'
 
   layers:
     - name: Domain
@@ -14,7 +16,7 @@ parameters:
           regex: /src/\w+/Application/.*
 
     - name: Infrastructure
-      collectors: 
+      collectors:
         - type: directory
           regex: /src/\w+/Infrastructure/.*
 
@@ -22,6 +24,6 @@ parameters:
     Domain:
     Application:
       - Domain
-    Infractucture:
+    Infrastructure:
       - Domain
       - Application

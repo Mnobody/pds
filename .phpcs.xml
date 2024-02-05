@@ -191,6 +191,28 @@
             <property name="ignoreSpacesInMatch" value="true"/>
         </properties>
     </rule>
+    <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
+        <properties>
+            <property name="rootNamespaces" type="array">
+                <element key="src/Application" value="Application"/>
+                <element key="src/Shared" value="Shared"/>
+                <element key="src/Document" value="Document"/>
+                <element key="src/Orchestrator" value="Orchestrator"/>
+                <element key="src/EnglishLanguageChecker" value="EnglishLanguageChecker"/>
+                <element key="src/CyrillicInspector" value="CyrillicInspector"/>
+                <element key="src/CyrillicReport" value="CyrillicReport"/>
+                <element key="src/CyrillicNormalizer" value="CyrillicNormalizer"/>
+                <element key="src/Normalizer" value="Normalizer"/>
+                <element key="src/EnglishSentenceSplitter" value="EnglishSentenceSplitter"/>
+                <element key="src/EnglishStemmer" value="EnglishStemmer"/>
+                <element key="src/DocumentComparator" value="DocumentComparator"/>
+                <element key="src/SentenceComparator" value="SentenceComparator"/>
+                <element key="src/Report" value="Report"/>
+                <element key="tests" value="Tests"/>
+            </property>
+        </properties>
+    </rule>
+
 
     <rule ref="PSR12"/>
 
