@@ -4,40 +4,38 @@ declare(strict_types=1);
 
 namespace Shared\Presentation\Controller;
 
-use OpenTelemetry\API\Globals;
-use OpenTelemetry\API\Trace\StatusCode;
-use OpenTelemetry\SDK\Common\Attribute\Attributes;
-use OpenTelemetry\SemConv\TraceAttributes;
+use Shared\Infrastructure\OpenTelemetry\TelemetryTracer;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 final class HealthCheckController
 {
+    public function __construct(private readonly TelemetryTracer $tracer)
+    {
+    }
+
     public function healthCheck(): Response
     {
-        $tracer = Globals::tracerProvider()->getTracer('opentelemetry.instrumentation.php');
+        $this->tracer->start('healh-check-span-controller');
 
-        $span = $tracer->spanBuilder('health-check-span-controller')->startSpan();
-
-        $span->setAttribute(TraceAttributes::CODE_NAMESPACE, __NAMESPACE__);
-        $span->setAttribute(TraceAttributes::CODE_FILEPATH, __FILE__);
-        $span->setAttribute(TraceAttributes::CODE_FUNCTION, __FUNCTION__);
+        $this->tracer->namespace(__NAMESPACE__);
+        $this->tracer->file(__FILE__);
+        $this->tracer->function(__FUNCTION__);
 
         try {
             $response = new Response(
                 '<html><body> OK </body></html>',
             );
 
-            $span->addEvent('response', Attributes::create(['value' => 'OK']));
+            $this->tracer->event('response', ['value' => 'OK']);
 
             return $response;
         } catch (Throwable $e) {
-            $span->setStatus(StatusCode::STATUS_ERROR);
-            $span->recordException($e, [TraceAttributes::EXCEPTION_ESCAPED => true]);
+            $this->tracer->exception($e);
 
             throw $e;
         } finally {
-            $span->end();
+            $this->tracer->finish();
         }
     }
 }
