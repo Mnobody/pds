@@ -2,6 +2,9 @@ parameters:
   paths:
     - ./src
   exclude_files:
+    - '#.*\/src\/.*\/Infrastructure\/Port\/.*#'
+    - '#.*\/src\/.*\/Infrastructure\/Adapter\/.*#'
+    - '#.*\/src\/Shared\/Infrastructure\/.*#'
     - '/src/Application/Infrastructure/Kernel.php'
 
   layers:

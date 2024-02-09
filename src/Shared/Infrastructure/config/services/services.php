@@ -4,15 +4,19 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Shared\Presentation\Console\HealthCheckCommand;
+use Shared\Infrastructure\OpenTelemetry\TelemetryTracer;
+use Shared\Presentation\Controller\HealthCheckController;
 
 return static function (ContainerConfigurator $configurator): void {
     $services = $configurator->services();
 
     $services
-        ->set(HealthCheckCommand::class)
+        ->set('pdt.opentelemetry.tracer', TelemetryTracer::class);
+
+    $services
+        ->set(HealthCheckController::class)
         ->args([
             service('pdt.opentelemetry.tracer'),
         ])
-        ->tag('console.command', ['command' => 'health-check']);
+        ->tag('controller.service_arguments');
 };

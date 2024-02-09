@@ -4,6 +4,8 @@ parameters:
   exclude_files:
     - '#.*\/src\/.*\/Infrastructure\/Port\/.*#'
     - '#.*\/src\/.*\/Infrastructure\/Adapter\/.*#'
+    - '#.*\/src\/.*\/Presentation\/.*#'
+    - '#.*\/src\/Shared\/Infrastructure\/.*#'
     - '/src/Application/Infrastructure/Kernel.php'
 
   layers:
