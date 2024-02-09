@@ -1,5 +1,6 @@
-
 # ROADMAP
+
+## Domain
 
 ### Text Normalization
 
@@ -20,7 +21,14 @@
 
 ### Report
 
-- [ ] Compose a verification report
+- [ ] Compose report
+
+## Infrastructure
+
+### Distributed Tracing
+
+- [x] OpenTelemetry
+- [x] Jaeger
 
 ---
 
@@ -28,3 +36,15 @@
 
 - [ ] Upload and Store PDF in min.io (S3 compatible object storage)
 - [ ] Read PDF from min.io
+
+---
+
+### Queue
+
+- [ ] RabbitMQ
+
+---
+
+### Database
+
+- [ ] PostgreSQL
