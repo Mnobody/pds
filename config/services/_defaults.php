@@ -17,7 +17,7 @@ return static function (ContainerConfigurator $configurator): void {
         ->load('Application\\', '../../src/Application/')
         ->exclude(
             [
-                '../../src/Application/Kernel.php',
+                '../../src/Application/Infrastructure/Kernel.php',
                 '../../src/Application/Domain/{Model,ValueObject}',
             ],
         );

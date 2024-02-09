@@ -13,4 +13,6 @@ return static function (ContainerConfigurator $configurator): void {
                 '%kernel.project_dir%/src/Shared/*/config',
             ],
         );
+
+    $configurator->import('services/*.php');
 };
