@@ -34,7 +34,7 @@ services:
     depends_on:
       - php
     ports:
-      - '80:80'
+      - '8080:80'
     restart: always
     networks:
       - pdt
@@ -48,6 +48,32 @@ services:
       - pdt
     ports:
       - 16686:16686
+
+  minio:
+    container_name: pdt-minio
+    build:
+      context: .
+      target: minio
+    volumes:
+      - ./data/minio-storage:/storage
+    ports:
+      - "9000:9000"
+      - "9090:9090"
+    restart: on-failure
+    networks:
+      - pdt
+
+  minio-data:
+    container_name: pdt-minio-data
+    build:
+      context: .
+      target: minio-data
+    volumes:
+      - ./data/minio:/data
+    depends_on:
+      - minio
+    networks:
+      - pdt
 
 networks:
   pdt:
