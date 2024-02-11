@@ -132,7 +132,7 @@ class StemmerTest extends TestCase
     {
         $vocabulary = [];
 
-        $handle = fopen(__DIR__ . '/vocabulary.txt', 'r');
+        $handle = fopen(__DIR__ . '/../../../../data/porter2-stemmer-vocabulary.txt', 'r');
 
         while (false !== ($line = fgets($handle))) {
             $vocabulary[] = explode('=', trim($line));

@@ -34,8 +34,7 @@
 
 ### Text Input
 
-- [ ] Upload and Store PDF in min.io (S3 compatible object storage)
-- [ ] Read PDF from min.io
+- [x] min.io (S3 compatible object storage)
 
 ---
 
