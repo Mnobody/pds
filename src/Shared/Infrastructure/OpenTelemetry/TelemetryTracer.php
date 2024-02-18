@@ -11,7 +11,7 @@ use OpenTelemetry\SDK\Common\Attribute\Attributes;
 use OpenTelemetry\SemConv\TraceAttributes;
 use Throwable;
 
-final class TelemetryTracer
+final class TelemetryTracer implements TelemetryTracerInterface
 {
     private const TRACER_NAME = 'opentelemetry.instrumentation.php';
 
