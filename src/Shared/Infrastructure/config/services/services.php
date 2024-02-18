@@ -7,6 +7,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use Shared\Infrastructure\Message\TestMessage;
 use Shared\Infrastructure\MessageHandler\TestMessageHandler;
 use Shared\Infrastructure\OpenTelemetry\TelemetryTracer;
+use Shared\Infrastructure\OpenTelemetry\TelemetryTracerInterface;
 use Shared\Presentation\Controller\HealthCheckController;
 
 return static function (ContainerConfigurator $configurator): void {
@@ -14,6 +15,9 @@ return static function (ContainerConfigurator $configurator): void {
 
     $services
         ->set('pdt.opentelemetry.tracer', TelemetryTracer::class);
+
+    $services
+        ->alias(TelemetryTracerInterface::class, 'pdt.opentelemetry.tracer');
 
     $services
         ->set(HealthCheckController::class)

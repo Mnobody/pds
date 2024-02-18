@@ -5,15 +5,17 @@ declare(strict_types=1);
 namespace Shared\Presentation\Controller;
 
 use Shared\Infrastructure\Message\TestMessage;
-use Shared\Infrastructure\OpenTelemetry\TelemetryTracer;
+use Shared\Infrastructure\OpenTelemetry\TelemetryTracerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Throwable;
 
 final class HealthCheckController
 {
-    public function __construct(private readonly TelemetryTracer $tracer, private readonly MessageBusInterface $bus)
-    {
+    public function __construct(
+        private readonly TelemetryTracerInterface $tracer,
+        private readonly MessageBusInterface $bus,
+    ) {
     }
 
     public function healthCheck(): Response

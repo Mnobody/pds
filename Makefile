@@ -30,7 +30,10 @@ q: quality
 ###
 
 phpunit:
-	$(DOCKER_EXEC_PHP) $(PHPUNIT)
+	$(DOCKER_EXEC_PHP) $(PHPUNIT) --group default
+
+phpunit-stemmer-vocabulary:
+	$(DOCKER_EXEC_PHP) $(PHPUNIT) --group stemmer-vocabulary
 
 pu: phpunit
 

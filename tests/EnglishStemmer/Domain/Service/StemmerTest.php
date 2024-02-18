@@ -118,6 +118,7 @@ class StemmerTest extends TestCase
     }
 
     /**
+     * @group        stemmer-vocabulary
      * @dataProvider vocabulary
      * @test
      */
