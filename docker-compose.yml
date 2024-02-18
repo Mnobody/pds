@@ -75,6 +75,16 @@ services:
     networks:
       - pdt
 
+  rabbitmq:
+    container_name: pdt-rabbitmq
+    image: rabbitmq:3.12-management
+    hostname: "rabbitmq"
+    networks:
+      - pdt
+    ports:
+      - 5672:5672
+      - 15672:15672
+
 networks:
   pdt:
     name: pdt

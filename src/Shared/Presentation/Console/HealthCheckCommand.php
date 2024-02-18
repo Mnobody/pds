@@ -21,7 +21,7 @@ final class HealthCheckCommand extends Command
     {
         $input->validate();
 
-        $this->tracer->start('healh-check-span-command');
+        $this->tracer->start('health-check-span-command');
 
         $this->tracer->namespace(__NAMESPACE__);
         $this->tracer->file(__FILE__);

@@ -5,6 +5,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.2",
+        "ext-amqp": "*",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "guzzlehttp/guzzle": "^7.8",
@@ -13,11 +14,13 @@
         "open-telemetry/opentelemetry-auto-psr15": "^1.0",
         "open-telemetry/opentelemetry-auto-psr18": "^1.0",
         "open-telemetry/sdk": "^1.0",
+        "symfony/amqp-messenger": "^6.4",
         "symfony/console": "^6.4",
         "symfony/dotenv": "^6.4",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "^6.4",
         "symfony/http-client": "^6.4",
+        "symfony/messenger": "^6.4",
         "symfony/runtime": "^6.4",
         "symfony/yaml": "^6.4"
     },
