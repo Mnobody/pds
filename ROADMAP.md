@@ -9,15 +9,11 @@
 - [x] Breaking text into sentences
 - [x] Stemmer (Porter2 algorithm)
 
----
-
 ### Text Comparison (_tf-idf_)
 
 - [x] Texts comparison (cosine similarity using _tf_ factor)
 - [x] Sentences comparison (cosine similarity using _idf_ factor)
 - [ ] Handle synonyms and/or hyponyms (https://wordnet.princeton.edu)
-
-----
 
 ### Report
 
@@ -25,24 +21,22 @@
 
 ## Infrastructure
 
+### Distributed Application
+
+- [ ] Supervisor
+
 ### Distributed Tracing
 
 - [x] OpenTelemetry
 - [x] Jaeger
 
----
-
-### Text Input
+### File Storage
 
 - [x] min.io (S3 compatible object storage)
 
----
-
 ### Queue
 
-- [ ] RabbitMQ
-
----
+- [x] RabbitMQ
 
 ### Database
 

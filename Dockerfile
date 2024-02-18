@@ -12,6 +12,13 @@ RUN docker-php-ext-enable opentelemetry
 RUN export MAKEFLAGS="-j$(nproc)" && pecl install protobuf
 RUN docker-php-ext-enable protobuf
 
+################## RabbitMQ ####################################
+
+RUN apk add rabbitmq-c-dev
+
+RUN export MAKEFLAGS="-j$(nproc)" && pecl install amqp
+RUN docker-php-ext-enable amqp
+
 #################### PHP FPM ###################################
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
