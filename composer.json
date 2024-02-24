@@ -10,6 +10,8 @@
         "ext-iconv": "*",
         "guzzlehttp/guzzle": "^7.8",
         "guzzlehttp/psr7": "^2.6",
+        "league/flysystem": "^3.0",
+        "league/flysystem-aws-s3-v3": "^3.0",
         "open-telemetry/exporter-otlp": "^1.0",
         "open-telemetry/opentelemetry-auto-psr15": "^1.0",
         "open-telemetry/opentelemetry-auto-psr18": "^1.0",
