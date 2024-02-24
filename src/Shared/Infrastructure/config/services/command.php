@@ -12,7 +12,8 @@ return static function (ContainerConfigurator $configurator): void {
     $services
         ->set(HealthCheckCommand::class)
         ->args([
-            service('pdt.opentelemetry.tracer'),
+            service('pdt.shared.opentelemetry.tracer'),
+            service('pdt.shared.filesystem'),
         ])
         ->tag('console.command', ['command' => 'health-check']);
 };

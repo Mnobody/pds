@@ -6,7 +6,7 @@ DEPTRAC  = ./vendor/bin/deptrac
 COMPOSER = composer
 
 ###
-### ----------------------------------- code quality
+### ---------------------------------------------- code quality
 ###
 
 phplint:
@@ -26,7 +26,7 @@ quality: phplint phpcs deptrac-layers deptrac-modules
 q: quality
 
 ###
-### ----------------------------------- tests
+### ---------------------------------------------- tests
 ###
 
 phpunit:
@@ -38,7 +38,7 @@ phpunit-stemmer-vocabulary:
 pu: phpunit
 
 ###
-### ----------------------------------- other
+### ---------------------------------------------- other
 ###
 
 outdated-php-packages:
