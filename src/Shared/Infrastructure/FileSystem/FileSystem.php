@@ -48,4 +48,14 @@ final class FileSystem implements FileSystemInterface
             $this->system->listContents(self::ROOT)->toArray(),
         );
     }
+
+    public function exists(string $path): bool
+    {
+        return $this->system->fileExists($path);
+    }
+
+    public function read(string $path): string
+    {
+        return $this->system->read($path);
+    }
 }

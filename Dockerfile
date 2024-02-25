@@ -24,6 +24,12 @@ RUN export MAKEFLAGS="-j$(nproc)" && pecl install amqp
 RUN docker-php-ext-enable amqp
 
 ###
+### ---------------------------------------------- pdftotext
+###
+
+RUN apk add poppler-utils
+
+###
 ### ---------------------------------------------- PHP FPM
 ###
 
